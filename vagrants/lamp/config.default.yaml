@@ -1,0 +1,2 @@
+config:
+    share_folder: 'path_to_your_local_folder'
