@@ -44,7 +44,7 @@ sudo apt-get install -y php5 libapache2-mod-php5
 sudo apt-get install -y php5-gd php5-mcrypt php5-mysqlnd php-soap php5-xdebug
 
 # curl
-sudo apt-get install curl php5-curl
+sudo apt-get install -y curl php5-curl
 
 # Installing phpmyadmin 
 echo -e "\n--- Install phpmyadmin specific packages and settings ---\n"
