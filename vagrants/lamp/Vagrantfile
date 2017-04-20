@@ -2,9 +2,21 @@
 # vi: set ft=ruby :
 require 'yaml'
 
-current_dir    = File.dirname(File.expand_path(__FILE__))
-configs        = YAML.load_file("#{current_dir}/config.yaml")
-vagrant_config = configs['config']
+current_dir      = File.dirname(File.expand_path(__FILE__))
+config_file_path = "#{current_dir}/config.yaml"
+# Check if config file exist
+if !File.file?(config_file_path) then
+  print "ERROR: Cannot open the file #{config_file_path}"
+  exit
+else 
+  configs          = YAML.load_file(config_file_path)
+  vagrant_config   = configs['config'] 
+  if !vagrant_config then
+    print "ERROR: Config file format is invalid: cannot find key 'config'"
+    exit
+  end
+end
+
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
@@ -45,9 +57,9 @@ Vagrant.configure("2") do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data" 
   #config.vm.synced_folder ".", "/home/vagrant/sync"
-  #config.vm.synced_folder "F:/Business/Site", "/vagrant", type: "virtualbox"
-  #config.vm.synced_folder "www", "/var/www", create: true, group: "www-data", owner: "www-data", type: "virtualbox"
-  #config.vm.synced_folder "F:\\Business\\Site", "/var/www", type: "virtualbox"
+  if !vagrant_config['share_folder'] || !File.exists?(vagrant_config['share_folder']) then
+    print "WARN: Cannot find the folder to share #{vagrant_config['share_folder']}\n"
+  end
   config.vm.synced_folder vagrant_config['share_folder'], "/vagrant", type: "virtualbox", group: "www-data", owner: "www-data"
 
   # Provider-specific configuration so you can fine-tune various
