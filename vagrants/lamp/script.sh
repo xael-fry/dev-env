@@ -1,8 +1,15 @@
 #!/bin/bash
 # Author- Alexandre Chatiron
 
+# include parse_yaml function
+. /config/parse_yaml.sh
+
+eval $(parse_yaml /config/config.yaml "config_")
+
 # Variables
 DBPASSWD=root
+PHP_POST_MAX_SIZE=$config_config_php_post_max_size
+PHP_UPLOAD_MAX_FILESIZE=$config_config_php_upload_max_filesize
 
 echo -e "\n--- Installing now... ---\n"
 
@@ -45,6 +52,12 @@ sudo apt-get install -y php5-gd php5-mcrypt php5-mysqlnd php-soap php5-xdebug
 
 # curl
 sudo apt-get install -y curl php5-curl
+
+# Configure PHP
+echo -e "\n--- Configure PHP ---\n"
+sudo sed -i "/post_max_size = .*/c post_max_size = $PHP_POST_MAX_SIZE" /etc/php5/apache2/php.ini
+sudo sed -i "/upload_max_filesize = .*/c upload_max_filesize = $PHP_UPLOAD_MAX_FILESIZE" /etc/php5/apache2/php.ini
+
 
 # Installing phpmyadmin 
 echo -e "\n--- Install phpmyadmin specific packages and settings ---\n"

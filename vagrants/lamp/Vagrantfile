@@ -61,6 +61,9 @@ Vagrant.configure("2") do |config|
     print "WARN: Cannot find the folder to share #{vagrant_config['share_folder']}\n"
   end
   config.vm.synced_folder vagrant_config['share_folder'], "/vagrant", type: "virtualbox", group: "www-data", owner: "www-data"
+  
+  # Share current folder in order to access config file
+  config.vm.synced_folder "", "/config", type: "virtualbox", group: "www-data", owner: "www-data"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -91,14 +94,7 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
-  
-  # Mentioning the SSH Username/Password:
-  #config.ssh.insert_key = false
-  #config.ssh.private_key_path = "ssh/id_rsa"
-  #config.ssh.keys_only=false
-  #config.ssh.username = "vagrant"
-  #config.ssh.password = "vagrant"
-  
+    
   # Begin Configuring
   config.vm.define "lamp" do|lamp|
     # Setting up hostname
