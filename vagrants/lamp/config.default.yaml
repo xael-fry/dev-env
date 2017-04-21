@@ -1,2 +1,5 @@
 config:
-    share_folder: 'path_to_your_local_folder'
+  share_folder: 'path_to_your_local_folder'
+  php:
+    post_max_size: 100M
+    upload_max_filesize: 100M
