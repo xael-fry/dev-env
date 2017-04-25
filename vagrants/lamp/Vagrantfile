@@ -64,6 +64,9 @@ Vagrant.configure("2") do |config|
   
   # Share current folder in order to access config file
   config.vm.synced_folder "", "/config", type: "virtualbox", group: "www-data", owner: "www-data"
+  
+    # Share current folder in order to access configuration file
+  config.vm.synced_folder "", "/config", type: "virtualbox", group: "www-data", owner: "www-data"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.

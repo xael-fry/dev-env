@@ -73,6 +73,11 @@ sudo apt-get install -y phpmyadmin
 # Make phpmyadmin available
 ln -s /etc/phpmyadmin/apache.conf /etc/apache2/sites-enabled/phpmyadmin.conf
 
+# Update apache config
+echo -e "\n--- Configure Apache ---\n"
+cat /config/customConfigFiles/default.conf | tee /etc/apache2/sites-available/000-default.conf
+
+
 # Restarting 
 echo -e "\n--- Restarting Apache ---\n"
 sudo service apache2 restart
