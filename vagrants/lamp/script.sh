@@ -30,10 +30,12 @@ if ! [ -L /var/www/html ]; then
   ln -fs /vagrant /var/www/html
 fi
 
-# Installing mod_rewrite
-echo -e "\n--- Installing mod_rewrite ---\n"
+# Installing apache modules
+echo -e "\n--- Installing Apache modules : mod_rewrite ---\n"
 
 sudo a2enmod rewrite
+
+sudo a2enmod headers
 
 # Installing MySQL and it's dependencies, Also, setting up root password for MySQL as it will prompt to enter the password during installation
 echo -e "\n--- Install MySQL phpmyadmin specific packages and settings ---\n"
