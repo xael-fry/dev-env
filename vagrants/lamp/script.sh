@@ -50,7 +50,7 @@ echo -e "\n--- Install PHP and more---\n"
 sudo apt-get install -y php5 libapache2-mod-php5 
 
 # php5-gd: module for handling graphics directly from PHP scripts. It supports the PNG, JPEG, XPM formats as well as Freetype/ttf fonts. 
-sudo apt-get install -y php5-gd php5-mcrypt php5-mysqlnd php-soap php5-xdebug
+sudo apt-get install -y php5-gd php5-mcrypt php5-mysqlnd php-soap php5-xdebug php5-intl
 
 # curl
 sudo apt-get install -y curl php5-curl
