@@ -1,5 +1,5 @@
 Vagrant.configure("2") do |config|
-  config.vm.box = "server4001/nodejs-mysql-centos"
+  config.vm.box = "debian/contrib-stretch64"
   
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -14,11 +14,19 @@ Vagrant.configure("2") do |config|
      
      # Share current folder in order to access config file
      #config.vm.synced_folder "", "/vagrant", type: "virtualbox"
-     
-    vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
- 
 
-     config.vm.synced_folder "D:\\dev\\websites\\overloop-react", "/workspace", type: "virtualbox"
+     config.vm.synced_folder "D:\\Workspace\\qatool", "/workspace", type: "virtualbox"
   end
   
+  # Begin Configuring
+  config.vm.define "docker" do|docker|
+    # Setting up hostname
+    docker.vm.hostname = "docker"
+    
+    # Provisioning with script.sh
+    docker.vm.provision "shell" do |s|
+        s.inline = "/bin/bash /vagrant/script.sh $1"
+        s.args   = "/vagrant/.env"
+    end
+  end 
 end
