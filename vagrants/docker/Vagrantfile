@@ -15,9 +15,9 @@ Vagrant.configure("2") do |config|
      # Share current folder in order to access config file
      #config.vm.synced_folder "", "/vagrant", type: "virtualbox"
 
-     config.vm.synced_folder "D:\\Workspace\\qatool", "/workspace", type: "virtualbox"
+     config.vm.synced_folder "D:\\Workspace\\cmathieu\\text-handling-grand-tour", "/workspace", type: "virtualbox"
   end
-  
+   
   # Begin Configuring
   config.vm.define "docker" do|docker|
     # Setting up hostname

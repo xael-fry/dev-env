@@ -1,0 +1,26 @@
+---
+:machine:
+  # https://app.vagrantup.com/bento/boxes/ebian-13.1
+  :box: bento/debian-13.1 # 64GB HDD
+  :memory: 3072 # 3GB RAM
+  :cpus: 1
+  :hostname: debian-13
+  :timezone: Europe/Paris
+
+:forwarded_ports:
+# SSH
+- :id: ssh
+  :host: 2200
+  :guest: 22
+
+:synced_folder:
+  :host: "C:\\Users\\chatira\\Documents\\Workspace"
+  :guest: /home/vagrant/Workspace
+
+:copy_files:
+- :source: ~/.ssh
+  :destination: ~/.ssh
+- :source: ~/.gitconfig
+  :destination: ~/.gitconfig
+
+...
